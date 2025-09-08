@@ -61,6 +61,7 @@ export default function VerificationEmail({
             Verify here
           </Button>
         </Row> */}
+        <Button>Checking on you bro..</Button>
       </Section>
     </Html>
   );
