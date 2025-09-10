@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
                 email: credentials.identifier.email,
               },
               {
-                username: credentials.identifier.password,
+                username: credentials.identifier.username,
               },
             ],
           });
