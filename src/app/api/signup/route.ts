@@ -5,8 +5,8 @@ import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  await connectDb();
   try {
-     await connectDb();
     const { username, email, password } = await req.json();
     const isUser = await User.findOne({ email });
     const hashedPassword = await bcrypt.hash(password, 10);
