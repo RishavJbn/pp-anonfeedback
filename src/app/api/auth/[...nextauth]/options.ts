@@ -10,7 +10,7 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
+        identifier: { label: "Email or Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials: any): Promise<any> {
@@ -19,16 +19,16 @@ export const authOptions: NextAuthOptions = {
           const user = await User.findOne({
             $or: [
               {
-                email: credentials.identifier.email,
+                email: credentials.identifier,
               },
               {
-                username: credentials.identifier.username,
+                username: credentials.identifier,
               },
             ],
           });
 
           if (!user) {
-            throw new Error("NO user found with this email or username");
+            throw new Error("No user found with this email or username");
           }
           if (!user.isVerified) {
             throw new Error(
@@ -76,6 +76,6 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/sign-in",
+    signIn: "/signin",
   },
 };
